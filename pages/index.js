@@ -73,10 +73,15 @@ export default function Home() {
 				</div>
 			</nav>
 
-			<div className='container'>
+			<div style={{ marginTop: '3.5em' }} className='container'>
 				<div className='row'>
 					<div className='col-lg-3'>
-						<h1 className='my-4'>Shop Name</h1>
+						<h1
+							style={{ fontSize: 'calc(var(--header1) - 1rem)' }}
+							className='my-4'
+						>
+							Shop Name
+						</h1>
 						<div className='list-group'>
 							<a href='#' className='list-group-item'>
 								Category 1
