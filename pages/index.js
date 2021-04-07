@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 export default function Home() {
 	return (
-		<div className='theme-light-2'>
+		<div className='theme-dark-2'>
 			<Head>
 				<title>Home</title>
 				<link
@@ -82,14 +82,14 @@ export default function Home() {
 						>
 							Shop Name
 						</h1>
-						<div className='list-group'>
-							<a href='#' className='reverse-theme list-group-item'>
+						<div className='current-theme list-group'>
+							<a href='#' className='current-theme list-group-item'>
 								Category 1
 							</a>
-							<a href='#' className='reverse-theme list-group-item'>
+							<a href='#' className='current-theme list-group-item'>
 								Category 2
 							</a>
-							<a href='#' className='reverse-theme list-group-item'>
+							<a href='#' className='current-theme list-group-item'>
 								Category 3
 							</a>
 						</div>
@@ -167,7 +167,7 @@ export default function Home() {
 
 						<div className='row'>
 							<div className='col-lg-4 col-md-6 mb-4'>
-								<div className='card h-100'>
+								<div className='current-theme card h-100'>
 									<a href='#'>
 										<img
 											className='card-img-top'
@@ -175,7 +175,7 @@ export default function Home() {
 											alt=''
 										/>
 									</a>
-									<div className='reverse-theme card-body'>
+									<div className='card-body'>
 										<h4 className='card-title'>
 											<a href='#'>Item One</a>
 										</h4>
@@ -194,7 +194,7 @@ export default function Home() {
 							</div>
 
 							<div className='col-lg-4 col-md-6 mb-4'>
-								<div className='card h-100'>
+								<div className='current-theme card h-100'>
 									<a href='#'>
 										<img
 											className='card-img-top'
@@ -202,7 +202,7 @@ export default function Home() {
 											alt=''
 										/>
 									</a>
-									<div className='reverse-theme card-body'>
+									<div className='card-body'>
 										<h4 className='card-title'>
 											<a href='#'>Item Two</a>
 										</h4>
@@ -221,7 +221,7 @@ export default function Home() {
 							</div>
 
 							<div className='col-lg-4 col-md-6 mb-4'>
-								<div className='card h-100'>
+								<div className='current-theme card h-100'>
 									<a href='#'>
 										<img
 											className='card-img-top'
@@ -229,7 +229,7 @@ export default function Home() {
 											alt=''
 										/>
 									</a>
-									<div className='reverse-theme card-body'>
+									<div className='card-body'>
 										<h4 className='card-title'>
 											<a href='#'>Item Three</a>
 										</h4>
@@ -248,7 +248,7 @@ export default function Home() {
 							</div>
 
 							<div className='col-lg-4 col-md-6 mb-4'>
-								<div className='card h-100'>
+								<div className='current-theme card h-100'>
 									<a href='#'>
 										<img
 											className='card-img-top'
@@ -256,7 +256,7 @@ export default function Home() {
 											alt=''
 										/>
 									</a>
-									<div className='reverse-theme card-body'>
+									<div className='card-body'>
 										<h4 className='card-title'>
 											<a href='#'>Item Four</a>
 										</h4>
@@ -275,7 +275,7 @@ export default function Home() {
 							</div>
 
 							<div className='col-lg-4 col-md-6 mb-4'>
-								<div className='card h-100'>
+								<div className='current-theme card h-100'>
 									<a href='#'>
 										<img
 											className='card-img-top'
@@ -283,7 +283,7 @@ export default function Home() {
 											alt=''
 										/>
 									</a>
-									<div className='reverse-theme card-body'>
+									<div className='card-body'>
 										<h4 className='card-title'>
 											<a href='#'>Item Five</a>
 										</h4>
@@ -302,7 +302,7 @@ export default function Home() {
 							</div>
 
 							<div className='col-lg-4 col-md-6 mb-4'>
-								<div className='card h-100'>
+								<div className='current-theme card h-100'>
 									<a href='#'>
 										<img
 											className='card-img-top'
@@ -310,7 +310,7 @@ export default function Home() {
 											alt=''
 										/>
 									</a>
-									<div className='reverse-theme card-body'>
+									<div className='card-body'>
 										<h4 className='card-title'>
 											<a href='#'>Item Six</a>
 										</h4>
