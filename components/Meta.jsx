@@ -60,30 +60,30 @@ const Meta = ({
 				mark: "\\'",
 				entityName: '&apos;',
 			},
-			{
-				mark: '<',
-				entityName: '&lt;',
-			},
-			{
-				mark: '>',
-				entityName: '&gt;',
-			},
+			// {
+			// 	mark: '<',
+			// 	entityName: '&lt;',
+			// },
+			// {
+			// 	mark: '>',
+			// 	entityName: '&gt;',
+			// },
 			//   {
 			//     mark: '&',
 			//     entityName: '&amp;'
 			//   },
-			{
-				mark: '©',
-				entityName: '&copy;',
-			},
-			{
-				mark: '®',
-				entityName: '&reg;',
-			},
-			{
-				mark: '\\\\',
-				entityName: '&bsol;',
-			},
+			// {
+			// 	mark: '©',
+			// 	entityName: '&copy;',
+			// },
+			// {
+			// 	mark: '®',
+			// 	entityName: '&reg;',
+			// },
+			// {
+			// 	mark: '\\\\',
+			// 	entityName: '&bsol;',
+			// },
 		];
 
 		const marks = marksAndEntitiesNames.map((markAndEntityName) => {
@@ -98,8 +98,6 @@ const Meta = ({
 			const regex = new RegExp(`[${mark}]`, 'ig');
 			tempString = tempString.replace(regex, entityName);
 		});
-
-		console.log(tempString);
 
 		return tempString;
 	})();
