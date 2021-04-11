@@ -4,12 +4,12 @@ import '../styles/globals.css';
 
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import Meta from '../components/Meta';
+import { DefaultMetaTags } from '../components/Meta/MetaTagsActions';
 
 const MyApp = ({ Component, pageProps }) => {
 	return (
 		<Fragment>
-			<Meta
+			<DefaultMetaTags
 				extraTags={
 					<Fragment>
 						<link
@@ -45,6 +45,7 @@ const MyApp = ({ Component, pageProps }) => {
 				.base-page {
 					margin-top: 2.5em;
 					width: 100%;
+					min-height: 100%;
 				}
 			`}</style>
 		</Fragment>

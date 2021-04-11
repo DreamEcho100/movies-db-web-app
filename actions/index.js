@@ -46,3 +46,19 @@ export const getMovies = () => {
 
 	return data;
 };
+
+export const getMoviesById = (id) => {
+	const myPromise = new Promise((resolve, reject) => {
+		// const movieIndex = MOVIE_DATA.findIndex(movie => movie.id === id);
+		// const movie = MOVIE_DATA[movieIndex]
+		const movie = MOVIE_DATA.filter((movie) => movie.id === id);
+		setTimeout(() => {
+			resolve(JSON.stringify(movie));
+			reject('Cannot fetch data!');
+		}, 300);
+	});
+
+	const data = myPromise.then((response) => JSON.parse(response));
+
+	return data;
+};

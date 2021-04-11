@@ -1,12 +1,15 @@
-import Meta from '../components/Meta';
+import { TitleMetaTag } from '../components/Meta/MetaTagsActions';
 
 const Contact = () => {
 	return (
 		<>
-			<Meta
-				titleToAddFirst='Contact - '
-				descriptionToAddFirst='Contact Page ,'
-				keywordsToAddFirst={['Contact']}
+			<TitleMetaTag
+				notHandled={true}
+				props={{
+					titleToAddFirst: 'Contact - ',
+					descriptionToAddFirst: 'Contact Page ,',
+					keywordsToAddFirst: ['Contact'],
+				}}
 			/>
 			<section className='container'>
 				<h1>Hello Contact!</h1>
