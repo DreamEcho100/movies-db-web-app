@@ -1,6 +1,8 @@
 import { Fragment } from 'react';
+import Link from 'next/link';
 
 const MovieItem = ({
+	id,
 	name,
 	releaseYear,
 	description,
@@ -57,12 +59,16 @@ const MovieItem = ({
 	return (
 		<div className='col-lg-4 col-md-6 mb-4'>
 			<div className='current-theme card h-100'>
-				<a href='#'>
-					<img className='card-img-top' src={image} alt='' />
-				</a>
+				<Link href={`/movies/${id}`}>
+					<a href='#'>
+						<img className='card-img-top' src={image} alt='' />
+					</a>
+				</Link>
 				<div className='card-body'>
 					<h4 className='card-title'>
-						<a href='#'>{name}</a>
+						<Link href={`/movies/${id}`}>
+							<a href='#'>{name}</a>
+						</Link>
 					</h4>
 					<h5>{releaseYear}</h5>
 					<div className='movie-genre'>{genre}</div>
@@ -77,6 +83,7 @@ const MovieItem = ({
 };
 
 MovieItem.defaultProps = {
+	id: undefined,
 	name: '??',
 	releaseYear: '??',
 	description: '??',

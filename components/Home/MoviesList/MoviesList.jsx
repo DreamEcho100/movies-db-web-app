@@ -16,6 +16,7 @@ class MoviesList extends Component {
 						return (
 							<MovieItem
 								key={id}
+								id={id}
 								name={name}
 								releaseYear={releaseYear}
 								description={description}
