@@ -5,9 +5,7 @@ import { getMovies } from '../actions/index';
 import Carousel from '../components/Home/Carousel';
 import Meta from '../components/Meta';
 import MoviesList from '../components/Home/MoviesList/MoviesList';
-import Navbar from '../components/Navbar';
 import SideMenu from '../components/Home/SideMenu';
-import Footer from '../components/Footer';
 
 const Home = ({ movies, errorMessage }) => {
 	return (
@@ -31,10 +29,7 @@ const Home = ({ movies, errorMessage }) => {
 				descriptionToAddFirst='Home Page "Noooooooooooooooooice!", '
 				keywordsToAddFirst={['Home']}
 			/>
-
-			<Navbar />
-
-			<main className='container home-page'>
+			<section className='container'>
 				<div className='row'>
 					<div className='col-lg-3'>
 						<SideMenu />
@@ -55,13 +50,7 @@ const Home = ({ movies, errorMessage }) => {
 						</div>
 					</div>
 				</div>
-			</main>
-			<Footer />
-			<style jsx>{`
-				.home-page {
-					margin-top: 2.5em;
-				}
-			`}</style>
+			</section>
 		</>
 	);
 };
