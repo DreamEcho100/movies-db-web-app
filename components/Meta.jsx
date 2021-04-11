@@ -6,14 +6,16 @@ const Meta = ({
 	robotsNoFollow,
 	graphMetaTags,
 	keywords,
-	extraKeywords,
+	keywordsToAddFirst,
+	keywordsToAddLast,
 	description,
-	extraDescription,
+	descriptionToAddFirst,
+	descriptionToAddLast,
 	icon,
-	title,
-	TitleToAddFirst,
-	TitleToAddLast,
 	extraTags,
+	title,
+	titleToAddFirst,
+	titleToAddLast,
 }) => {
 	const firstLetterToLowerCase = (string) => {
 		let tempArray = string.split('');
@@ -26,31 +28,40 @@ const Meta = ({
 	const mainTitle = (() => {
 		let tempString = title;
 
-		tempString = TitleToAddFirst
-			? `${TitleToAddFirst}${firstLetterToLowerCase(tempString)}`
+		tempString = titleToAddFirst
+			? `${titleToAddFirst}${firstLetterToLowerCase(tempString)}`
 			: tempString;
 
-		tempString = TitleToAddLast ? `${tempString}${TitleToAddLast}` : tempString;
+		tempString = titleToAddLast ? `${tempString}${titleToAddLast}` : tempString;
 
 		return tempString;
 	})();
 
 	const mainKeywords = (() => {
-		let tempString = keywords;
+		let tempArray = keywords;
 
-		tempString = extraKeywords
-			? `${extraKeywords}, ${firstLetterToLowerCase(tempString)}`
-			: tempString;
+		tempArray = keywordsToAddFirst
+			? [...keywordsToAddFirst, ...tempArray]
+			: tempArray;
 
-		return tempString;
+		tempArray = keywordsToAddLast
+			? [...tempArray, ...keywordsToAddLast]
+			: tempArray;
+
+		return tempArray.join(', ');
 	})();
 
 	const mainDescription = (() => {
 		let tempString = description;
 
-		tempString = extraDescription
-			? `${extraDescription}, ${firstLetterToLowerCase(tempString)}`
+		tempString = descriptionToAddFirst
+			? `${descriptionToAddFirst}${tempString}`
 			: tempString;
+
+		tempString = descriptionToAddLast
+			? `${tempString}${descriptionToAddLast}`
+			: tempString;
+
 		const marksAndEntitiesNames = [
 			{
 				mark: '\\"',
@@ -179,6 +190,29 @@ const Meta = ({
 			<meta name='description' content={mainDescription} />
 			<link rel='icon' href={icon} />
 			{extraTags}
+			<>
+				<link
+					rel='stylesheet'
+					href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
+					integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T'
+					crossorigin='anonymous'
+				/>
+				<script
+					src='https://code.jquery.com/jquery-3.3.1.slim.min.js'
+					integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo'
+					crossorigin='anonymous'
+				></script>
+				<script
+					src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js'
+					integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1'
+					crossorigin='anonymous'
+				></script>
+				<script
+					src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'
+					integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM'
+					crossorigin='anonymous'
+				></script>
+			</>
 			<title>{mainTitle}</title>
 		</Head>
 	);
@@ -186,8 +220,8 @@ const Meta = ({
 
 Meta.defaultProps = {
 	title: 'Movies DB Web App',
-	keywords: 'Movies, DB, Web, App, keywords',
-	description: 'Movies DB Web App keywords',
+	keywords: ['Movies', 'DB', 'Web', 'App', 'keywords'],
+	description: 'Movies DB Web App keywords.',
 	icon: '/favicon.ico',
 };
 
