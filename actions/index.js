@@ -35,5 +35,14 @@ const MOVIE_DATA = [
 ];
 
 export const getMovies = () => {
-	return MOVIE_DATA;
+	const myPromise = new Promise((resolve, reject) => {
+		setTimeout(() => {
+			resolve(JSON.stringify(MOVIE_DATA));
+			reject('Cannot fetch data!');
+		}, 300);
+	});
+
+	const data = myPromise.then((response) => JSON.parse(response));
+
+	return data;
 };
