@@ -45,7 +45,6 @@ const MyApp = ({ Component, pageProps }) => {
 				.base-page {
 					margin-top: 2.5em;
 					width: 100%;
-					min-height: 100%;
 				}
 			`}</style>
 		</Fragment>

@@ -15,10 +15,7 @@ import {
 import MoviesList from '../components/Home/MoviesList/MoviesList';
 import SideMenu from '../components/Home/SideMenu';
 
-const Home = ({ movies, errorMessage }) => {
-	/*
-
-	*/
+const Home = ({ movies, images, errorMessage }) => {
 	return (
 		<>
 			{addToHead([
@@ -45,7 +42,7 @@ const Home = ({ movies, errorMessage }) => {
 					</div>
 
 					<div className='col-lg-9'>
-						<Carousel />
+						<Carousel images={images} />
 						<div className='row'>
 							{errorMessage && (
 								<div
@@ -66,9 +63,15 @@ const Home = ({ movies, errorMessage }) => {
 
 Home.getInitialProps = async () => {
 	const movies = await getMovies();
+	const images = movies.map((movie) => ({
+		id: `image-${movie.id}`,
+		url: movie.cover,
+		name: movie.name,
+	}));
 
 	return {
 		movies,
+		images,
 	};
 };
 
