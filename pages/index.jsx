@@ -1,6 +1,6 @@
 import React, { Component, useEffect, useState } from 'react';
 
-import { getMovies } from '../actions/index';
+import { getMovies, getCatagories } from '../actions/index';
 
 import Carousel from '../components/Home/Carousel';
 import {
@@ -15,7 +15,7 @@ import {
 import MoviesList from '../components/Home/MoviesList/MoviesList';
 import SideMenu from '../components/Home/SideMenu';
 
-const Home = ({ movies, images, errorMessage }) => {
+const Home = ({ movies, images, catagories, errorMessage }) => {
 	return (
 		<>
 			{addToHead([
@@ -38,7 +38,7 @@ const Home = ({ movies, images, errorMessage }) => {
 			<section className='container'>
 				<div className='row'>
 					<div className='col-lg-3'>
-						<SideMenu />
+						<SideMenu catagories={catagories} />
 					</div>
 
 					<div className='col-lg-9'>
@@ -63,6 +63,7 @@ const Home = ({ movies, images, errorMessage }) => {
 
 Home.getInitialProps = async () => {
 	const movies = await getMovies();
+	const catagories = await getCatagories();
 	const images = movies.map((movie) => ({
 		id: `image-${movie.id}`,
 		url: movie.cover,
@@ -72,6 +73,7 @@ Home.getInitialProps = async () => {
 	return {
 		movies,
 		images,
+		catagories,
 	};
 };
 

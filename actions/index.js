@@ -67,10 +67,30 @@ export const getMoviesById = (id) => {
 		setTimeout(() => {
 			resolve(JSON.stringify(movie));
 			reject('Cannot fetch data!');
-		}, 300);
+		}, 50);
 	});
 
 	const data = myPromise.then((response) => JSON.parse(response)[0]);
+
+	return data;
+};
+
+const CATEGORY_DATA = [
+	{ id: 'c-1', name: 'drama' },
+	{ id: 'c-2', name: 'action' },
+	{ id: 'c-3', name: 'adventeru' },
+	{ id: 'c-4', name: 'historical' },
+];
+
+export const getCatagories = () => {
+	const myPromise = new Promise((resolve, reject) => {
+		setTimeout(() => {
+			resolve(JSON.stringify(CATEGORY_DATA));
+			reject('Cannot fetch data!');
+		}, 50);
+	});
+
+	const data = myPromise.then((response) => JSON.parse(response));
 
 	return data;
 };
