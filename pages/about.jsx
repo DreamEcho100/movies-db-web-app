@@ -1,16 +1,33 @@
-import { TitleMetaTag } from '../components/Meta/MetaTagsActions';
+import {
+	addToHead,
+	DescriptionMetaTag,
+	handleDescription,
+	KeywordsMetaTag,
+	handleKeywords,
+	TitleMetaTag,
+	handleTitle,
+} from '../components/Meta/MetaTagsActions';
 
 const About = () => {
 	return (
 		<>
-			<TitleMetaTag
-				notHandled={true}
-				props={{
-					titleToAddFirst: 'About - ',
-					descriptionToAddFirst: 'About Page ,',
-					keywordsToAddFirst: ['About'],
-				}}
-			/>
+			{addToHead([
+				TitleMetaTag(
+					handleTitle({
+						addFirst: 'About - ',
+					})
+				),
+				KeywordsMetaTag(
+					handleKeywords({
+						addFirst: ['About Page'],
+					})
+				),
+				DescriptionMetaTag(
+					handleDescription({
+						addFirst: 'About Page, ',
+					})
+				),
+			])}
 			<section className='container'>
 				<h1>Hello About!</h1>
 			</section>

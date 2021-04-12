@@ -1,16 +1,33 @@
-import { TitleMetaTag } from '../components/Meta/MetaTagsActions';
+import {
+	addToHead,
+	DescriptionMetaTag,
+	handleDescription,
+	KeywordsMetaTag,
+	handleKeywords,
+	TitleMetaTag,
+	handleTitle,
+} from '../components/Meta/MetaTagsActions';
 
 const Services = () => {
 	return (
 		<>
-			<TitleMetaTag
-				notHandled={true}
-				props={{
-					titleToAddFirst: 'Services - ',
-					descriptionToAddFirst: 'Services Page ,',
-					keywordsToAddFirst: ['Services'],
-				}}
-			/>
+			{addToHead([
+				TitleMetaTag(
+					handleTitle({
+						addFirst: 'Services - ',
+					})
+				),
+				KeywordsMetaTag(
+					handleKeywords({
+						addFirst: ['Services Page'],
+					})
+				),
+				DescriptionMetaTag(
+					handleDescription({
+						addFirst: 'Services Page, ',
+					})
+				),
+			])}
 			<section className='container'>
 				<h1>Hello Services!</h1>
 			</section>

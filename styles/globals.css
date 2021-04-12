@@ -49,18 +49,23 @@
 	background: var(--main-special-color-2);
 }
 
-body::-webkit-scrollbar {
+::-webkit-scrollbar {
 	/* width: calc(1.5rem + 0.2vw); */
+	position: relative;
 	width: initial;
+	z-index: 99;
 }
-body::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
 	background: var(--main-special-color-1);
+	z-index: 99;
 }
-body::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
 	background: var(--main-special-color-2);
+	z-index: 99;
 }
-body::-webkit-scrollbar-button {
+::-webkit-scrollbar-button {
 	background: var(--main-special-color-2);
+	z-index: 99;
 }
 /*
 html,

@@ -20,6 +20,20 @@ const firstLetterToLowerCase = (string) => {
 	return tempArray.join('');
 };
 
+// export const addToHead = (element) => {
+// 	return <Head>{element}</Head>;
+// };
+
+export const addToHead = (array) => {
+	return (
+		<Head>
+			{array.map((element, index) => (
+				<Fragment key={index}>{element}</Fragment>
+			))}
+		</Head>
+	);
+};
+
 export const handleTitle = ({ title, addFirst, addLast }) => {
 	let tempString = title ? title : defaultTitle;
 
@@ -100,31 +114,20 @@ export const handleDescription = ({ description, addFirst, addLast }) => {
 	return tempString;
 };
 
-export const RobotsMetaTag = (index, follow, addToHead) => {
-	if (addToHead) {
-		return (
-			<Head>
-				<meta
-					name='robots'
-					content={`${index ? 'index' : 'noindex'} ${
-						follow ? 'follow' : 'nofollow'
-					}`}
-				/>
-			</Head>
-		);
-	} else {
-		return (
-			<meta
-				name='robots'
-				content={`${index ? 'index' : 'noindex'} ${
-					follow ? 'follow' : 'nofollow'
-				}`}
-			/>
-		);
-	}
+//
+export const RobotsMetaTag = (index, follow) => {
+	return (
+		<meta
+			name='robots'
+			content={`${index ? 'index' : 'noindex'} ${
+				follow ? 'follow' : 'nofollow'
+			}`}
+		/>
+	);
 };
 
-export const GraphMetaTags = (graphMetaProps, extraProps, addToHead) => {
+//
+export const GraphMetaTags = (graphMetaProps, extraProps) => {
 	const socialWebSites =
 		graphMetaProps && graphMetaProps.socialWebSites
 			? graphMetaProps.socialWebSites
@@ -162,11 +165,9 @@ export const GraphMetaTags = (graphMetaProps, extraProps, addToHead) => {
 		},
 	];
 
-	/*
-    <meta property="article:publisher" content="https://www.facebook.com/CSSTricks">
-    <meta property="article:published_time" content="2016-05-25T15:27:16+00:00">
-    <meta property="article:modified_time" content="2020-01-29T23:21:55+00:00">
-  */
+	// <meta property="article:publisher" content="https://www.facebook.com/CSSTricks">
+	// <meta property="article:published_time" content="2016-05-25T15:27:16+00:00">
+	// <meta property="article:modified_time" content="2020-01-29T23:21:55+00:00">
 
 	const twitterMeta = [
 		{
@@ -198,19 +199,17 @@ export const GraphMetaTags = (graphMetaProps, extraProps, addToHead) => {
 			content: '', // 4 minutes
 		},
 	];
-	/*
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:creator" content="@chriscoyier">
-    <meta name="twitter:site" content="@CSS">
-    <meta name="twitter:label1" content="Written by">
-    <meta name="twitter:data1" content="Chris Coyier">
-    <meta name="twitter:label2" content="Est. reading time">
-    <meta name="twitter:data2" content="4 minutes">
-  */
 
-	/*
-    <meta name="monetization" content="$ilp.uphold.com/biyqg2MkQKbe">
-  */
+	// <meta name="twitter:card" content="summary_large_image">
+	// <meta name="twitter:creator" content="@chriscoyier">
+	// <meta name="twitter:site" content="@CSS">
+	// <meta name="twitter:label1" content="Written by">
+	// <meta name="twitter:data1" content="Chris Coyier">
+	// <meta name="twitter:label2" content="Est. reading time">
+	// <meta name="twitter:data2" content="4 minutes">
+
+	// <meta name="monetization" content="$ilp.uphold.com/biyqg2MkQKbe">
+
 	const ogLocale = og && og.locale ? og.locale : mainLang; // "en";
 	const ogType = og && og.type ? og.type : 'article';
 	const ogTitle = og && og.title ? og.title : mainTitle;
@@ -219,180 +218,117 @@ export const GraphMetaTags = (graphMetaProps, extraProps, addToHead) => {
 	const ogSiteName = og && og.siteName ? og.siteName : mainTitle;
 	const ogImage = og && og.image ? og.image : mainImage;
 
-	if (addToHead) {
-		return (
-			<Head>
-				{socialWebSites.map((socialWebSite, index) => (
-					<Fragment key={index}>
-						<meta
-							name={`${socialWebSite.target}:card`}
-							content={socialWebSite.card}
-						/>
-						<meta
-							name={`${socialWebSite.site}:site`}
-							content={socialWebSite.site}
-						/>
-						<meta
-							name={`${socialWebSite.site}:creator`}
-							content={socialWebSite.creator}
-						/>
-					</Fragment>
-				))}
-				<meta property='og:locale' content={ogLocale} />
-				<meta property='og:type' content={ogType} />
-				<meta property='og:title' content={ogTitle} />
-				<meta property='og:description' content={ogDescription} />
-				<meta property='og:url' content={ogUrl} />
-				<meta property='og:siteName' content={ogSiteName} />
-				<meta property='og:image' content={ogImage} />
-			</Head>
-		);
-	} else {
-		return (
-			<>
-				{socialWebSites.map((socialWebSite, index) => (
-					<Fragment key={index}>
-						<meta
-							name={`${socialWebSite.target}:card`}
-							content={socialWebSite.card}
-						/>
-						<meta
-							name={`${socialWebSite.site}:site`}
-							content={socialWebSite.site}
-						/>
-						<meta
-							name={`${socialWebSite.site}:creator`}
-							content={socialWebSite.creator}
-						/>
-					</Fragment>
-				))}
-				<meta property='og:locale' content={ogLocale} />
-				<meta property='og:type' content={ogType} />
-				<meta property='og:title' content={ogTitle} />
-				<meta property='og:description' content={ogDescription} />
-				<meta property='og:url' content={ogUrl} />
-				<meta property='og:siteName' content={ogSiteName} />
-				<meta property='og:image' content={ogImage} />
-			</>
-		);
-	}
+	return (
+		<>
+			{socialWebSites.map((socialWebSite, index) => (
+				<Fragment key={index}>
+					<meta
+						name={`${socialWebSite.target}:card`}
+						content={socialWebSite.card}
+					/>
+					<meta
+						name={`${socialWebSite.site}:site`}
+						content={socialWebSite.site}
+					/>
+					<meta
+						name={`${socialWebSite.site}:creator`}
+						content={socialWebSite.creator}
+					/>
+				</Fragment>
+			))}
+			<meta property='og:locale' content={ogLocale} />
+			<meta property='og:type' content={ogType} />
+			<meta property='og:title' content={ogTitle} />
+			<meta property='og:description' content={ogDescription} />
+			<meta property='og:url' content={ogUrl} />
+			<meta property='og:siteName' content={ogSiteName} />
+			<meta property='og:image' content={ogImage} />
+		</>
+	);
 };
 
-export const CopyrightOwnerMetaTag = (owner, addToHead) => {
+//
+export const CopyrightOwnerMetaTag = (owner) => {
 	const mainCopyrightOwner = owner ? owner : defaultCopyrightOwner;
-	if (addToHead) {
-		return (
-			<Head>
-				<meta
-					name='copyright'
-					content={`Copyright owner: ${mainCopyrightOwner}`}
-				/>
-			</Head>
-		);
-	} else {
-		return (
-			<meta
-				name='copyright'
-				content={`Copyright owner: ${mainCopyrightOwner}`}
-			/>
-		);
-	}
+	return (
+		<meta name='copyright' content={`Copyright owner: ${mainCopyrightOwner}`} />
+	);
 };
 
-export const AuthorMetaTag = (author, addToHead) => {
+//
+export const AuthorMetaTag = (author) => {
 	const mainAuthor = author ? author : defaultAuthor;
-	if (addToHead) {
-		return (
-			<Head>
-				<meta name='author' content={mainAuthor} />
-			</Head>
-		);
-	} else {
-		return <meta name='author' content={mainAuthor} />;
-	}
+	return <meta name='author' content={mainAuthor} />;
 };
 
-export const CacheControlMetaTag = (NoCache, addToHead) => {
+//
+export const CacheControlMetaTag = (NoCache) => {
 	if (!NoCache) {
 		return null;
 	}
-	if (addToHead) {
-		return (
-			<Head>
-				<meta httpEquiv='cache-control' content='no-cache' />
-			</Head>
-		);
-	} else {
-		return <meta httpEquiv='cache-control' content='no-cache' />;
-	}
+
+	return <meta httpEquiv='cache-control' content='no-cache' />;
 };
 
+//
 export const KeywordsMetaTag = (keywords, addToHead, props) => {
 	let mainKeywords;
-	if (addToHead) {
-		mainKeywords = handleKeywords(props);
-		return (
-			<Head>
-				<meta name='keywords' content={mainKeywords} />
-			</Head>
-		);
-	} else {
-		mainKeywords = keywords ? keywords : defaultKeywords.join(', ');
-		return <meta name='keywords' content={mainKeywords} />;
-	}
+	// if (addToHead) {
+	// 	mainKeywords = handleKeywords(props);
+	// 	return (
+	// 		<Head>
+	// 			<meta name='keywords' content={mainKeywords} />
+	// 		</Head>
+	// 	);
+	// } else {
+	mainKeywords = keywords ? keywords : defaultKeywords.join(', ');
+	return <meta name='keywords' content={mainKeywords} />;
+	// }
 };
 
 export const DescriptionMetaTag = (description, addToHead, props) => {
 	let mainDescription;
-	if (addToHead) {
-		mainDescription = handleDescription(props);
-		return (
-			<Head>
-				<meta name='description' content={mainDescription} />
-			</Head>
-		);
-	} else {
-		mainDescription = description ? description : defaultDescription;
-		return <meta name='description' content={mainDescription} />;
-	}
+	// if (addToHead) {
+	// 	mainDescription = handleDescription(props);
+	// 	return (
+	// 		<Head>
+	// 			<meta name='description' content={mainDescription} />
+	// 		</Head>
+	// 	);
+	// } else {
+	mainDescription = description ? description : defaultDescription;
+	return <meta name='description' content={mainDescription} />;
+	// }
 };
 
-export const IconsMetaTags = ({ icon, svgIcon, appleIcon }, addToHead) => {
+//
+export const IconsMetaTags = ({ icon, svgIcon, appleIcon }) => {
 	const mainIcon = icon ? icon : defaultIcon;
 	const mainSvgIcon = svgIcon ? svgIcon : defaultSvgIcon;
 	const mainAppleIcon = appleIcon ? appleIcon : defaultAppleIcon;
-	if (addToHead) {
-		return (
-			<Head>
-				<link rel='icon' href={icon} />
-				<link rel='icon' href={svgIcon} type='image/svg+xml' />
-				<link rel='apple-touch-icon' href={appleIcon} />
-			</Head>
-		);
-	} else {
-		return (
-			<>
-				<link rel='icon' href={mainIcon} />
-				<link rel='icon' href={mainSvgIcon} type='image/svg+xml' />
-				<link rel='apple-touch-icon' href={mainAppleIcon} />
-			</>
-		);
-	}
+
+	return (
+		<>
+			<link rel='icon' href={mainIcon} />
+			<link rel='icon' href={mainSvgIcon} type='image/svg+xml' />
+			<link rel='apple-touch-icon' href={mainAppleIcon} />
+		</>
+	);
 };
 
 export const TitleMetaTag = (title, addToHead, props) => {
 	let mainTitle;
-	if (addToHead) {
-		mainTitle = handleTitle(props);
-		return (
-			<Head>
-				<title>{mainTitle}</title>
-			</Head>
-		);
-	} else {
-		mainTitle = title ? title : defaultTitle;
-		return <title>{mainTitle}</title>;
-	}
+	// if (addToHead) {
+	// 	mainTitle = handleTitle(props);
+	// 	return (
+	// 		<Head>
+	// 			<title>{mainTitle}</title>
+	// 		</Head>
+	// 	);
+	// } else {
+	mainTitle = title ? title : defaultTitle;
+	return <title>{mainTitle}</title>;
+	// }
 };
 
 export const DefaultMetaTags = ({

@@ -2,7 +2,10 @@ import Link from 'next/link';
 
 const Navbar = () => {
 	return (
-		<nav className='w-100 navbar navbar-expand-lg navbar-dark bg-dark fixed-top'>
+		<nav
+			style={{ zIndex: '30' }}
+			className='w-100 navbar navbar-expand-lg navbar-dark bg-dark fixed-top'
+		>
 			<div className='container'>
 				<a className='navbar-brand' href='#'>
 					Start Bootstrap

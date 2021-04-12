@@ -3,18 +3,41 @@ import React, { Component, useEffect, useState } from 'react';
 import { getMovies } from '../actions/index';
 
 import Carousel from '../components/Home/Carousel';
-import { TitleMetaTag } from '../components/Meta/MetaTagsActions';
+import {
+	addToHead,
+	DescriptionMetaTag,
+	handleDescription,
+	KeywordsMetaTag,
+	handleKeywords,
+	TitleMetaTag,
+	handleTitle,
+} from '../components/Meta/MetaTagsActions';
 import MoviesList from '../components/Home/MoviesList/MoviesList';
 import SideMenu from '../components/Home/SideMenu';
 
 const Home = ({ movies, errorMessage }) => {
+	/*
+
+	*/
 	return (
 		<>
-			{TitleMetaTag('', true, {
-				titleToAddFirst: 'Home - ',
-				descriptionToAddFirst: 'Home Page "Noooooooooooooooooice!", ',
-				keywordsToAddFirst: ['Home'],
-			})}
+			{addToHead([
+				TitleMetaTag(
+					handleTitle({
+						addFirst: 'Home - ',
+					})
+				),
+				KeywordsMetaTag(
+					handleKeywords({
+						addFirst: ['Home Page'],
+					})
+				),
+				DescriptionMetaTag(
+					handleDescription({
+						addFirst: 'Home Page "Noooooooooooooooooice!", ',
+					})
+				),
+			])}
 			<section className='container'>
 				<div className='row'>
 					<div className='col-lg-3'>
