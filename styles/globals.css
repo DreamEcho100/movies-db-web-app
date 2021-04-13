@@ -8,6 +8,11 @@
 	overflow-x: hidden;
 }
 
+.main-font-size {
+	font-size: var(--normal-size-text-1);
+	font-size: inherit;
+}
+
 :root {
 	--main-font-color: black;
 	--main-bg-color: white;

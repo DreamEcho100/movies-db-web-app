@@ -60,14 +60,25 @@ const MovieItem = ({
 		<div className='col-lg-4 col-md-6 mb-4'>
 			<div className='current-theme card h-100'>
 				<Link href={`/movies/${id}`} as={`/movies/${id}`}>
-					<a href='#'>
-						<img className='card-img-top' src={image} alt='' />
+					<a href='#' className='main-font-size'>
+						<img
+							style={{
+								height: '30vh',
+								maxHeight: '50rem',
+								minHeight: '15rem',
+							}}
+							className='card-img-top'
+							src={image}
+							alt=''
+						/>
 					</a>
 				</Link>
 				<div className='card-body'>
 					<h4 className='card-title'>
 						<Link href={`/movies/${id}`} as={`/movies/${id}`}>
-							<a href='#'>{name}</a>
+							<a href='#' className='main-font-size'>
+								{name}
+							</a>
 						</Link>
 					</h4>
 					<h5>{releaseYear}</h5>

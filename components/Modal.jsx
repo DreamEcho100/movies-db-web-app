@@ -9,7 +9,7 @@ const Modal = (props) => {
 		<div>
 			<button
 				type='button'
-				className='btn btn-primary'
+				className='btn btn-primary main-font-size'
 				data-toggle='modal'
 				data-target='#exampleModal'
 			>
@@ -32,21 +32,19 @@ const Modal = (props) => {
 							</h5>
 							<button
 								type='button'
-								className='close'
+								className='close main-font-size'
 								data-dismiss='modal'
 								aria-label='Close'
 							>
 								<span aria-hidden='true'>&times;</span>
 							</button>
 						</div>
-						<div className='modal-body'>
-							{props.children}
-						</div>
+						<div className='modal-body'>{props.children}</div>
 						<div className='modal-footer'>
 							<button
 								ref={(ele) => (closeButton = ele)}
 								type='button'
-								className='btn btn-secondary'
+								className='btn btn-secondary main-font-size'
 								data-dismiss='modal'
 							>
 								Close
@@ -54,7 +52,7 @@ const Modal = (props) => {
 							<button
 								onClick={submitModal}
 								type='button'
-								className='btn btn-primary'
+								className='btn btn-primary main-font-size'
 							>
 								Save changes
 							</button>

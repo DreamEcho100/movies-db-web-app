@@ -35,7 +35,7 @@ const Carousel = ({ images }) => {
 				))}
 			</div>
 			<a
-				className='carousel-control-prev'
+				className='carousel-control-prev main-font-size'
 				href='#carouselExampleIndicators'
 				role='button'
 				data-slide='prev'
@@ -44,7 +44,7 @@ const Carousel = ({ images }) => {
 				<span className='sr-only'>Previous</span>
 			</a>
 			<a
-				className='carousel-control-next'
+				className='carousel-control-next main-font-size'
 				href='#carouselExampleIndicators'
 				role='button'
 				data-slide='next'
@@ -54,8 +54,8 @@ const Carousel = ({ images }) => {
 			</a>
 			<style jsx>{`
 				.carousel-item {
-					height: 40vh;
-					max-height: 50rem;
+					height: 50vh;
+					max-height: 100rem;
 					min-height: 25rem;
 				}
 			`}</style>

@@ -7,11 +7,11 @@ const Navbar = () => {
 			className='w-100 navbar navbar-expand-lg navbar-dark bg-dark fixed-top'
 		>
 			<div className='container'>
-				<a className='navbar-brand' href='#'>
+				<a className='navbar-brand main-font-size' href='#'>
 					Start Bootstrap
 				</a>
 				<button
-					className='navbar-toggler'
+					className='navbar-toggler main-font-size'
 					type='button'
 					data-toggle='collapse'
 					data-target='#navbarResponsive'
@@ -25,7 +25,7 @@ const Navbar = () => {
 					<ul className='navbar-nav ml-auto'>
 						<li className='nav-item active'>
 							<Link href='/'>
-								<a className='nav-link' href='#'>
+								<a className='nav-link main-font-size' href='#'>
 									Home
 									<span className='sr-only'>(current)</span>
 								</a>
@@ -33,21 +33,21 @@ const Navbar = () => {
 						</li>
 						<li className='nav-item'>
 							<Link href='/about'>
-								<a className='nav-link' href='#'>
+								<a className='nav-link main-font-size' href='#'>
 									About
 								</a>
 							</Link>
 						</li>
 						<li className='nav-item'>
 							<Link href='/services'>
-								<a className='nav-link' href='#'>
+								<a className='nav-link main-font-size' href='#'>
 									Services
 								</a>
 							</Link>
 						</li>
 						<li className='nav-item'>
 							<Link href='/contact'>
-								<a className='nav-link' href='#'>
+								<a className='nav-link main-font-size' href='#'>
 									Contact
 								</a>
 							</Link>
