@@ -78,6 +78,7 @@ export const getMoviesById = (id) => {
 export const createMovie = (movie) => {
 	const myPromise = new Promise((resolve, reject) => {
 		// Create ID for movie
+		movie.id = Math.random().toString(36).substr(2, 7).toLowerCase();
 		MOVIE_DATA.push(movie);
 		setTimeout(() => {
 			resolve(JSON.stringify(MOVIE_DATA));
