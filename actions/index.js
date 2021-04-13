@@ -75,6 +75,21 @@ export const getMoviesById = (id) => {
 	return data;
 };
 
+export const createMovie = (movie) => {
+	const myPromise = new Promise((resolve, reject) => {
+		// Create ID for movie
+		MOVIE_DATA.push(movie);
+		setTimeout(() => {
+			resolve(JSON.stringify(MOVIE_DATA));
+			reject('Cannot fetch data!');
+		}, 50);
+	});
+
+	const data = myPromise.then((response) => JSON.parse(response));
+
+	return data;
+};
+
 const CATEGORY_DATA = [
 	{ id: 'c-1', name: 'drama' },
 	{ id: 'c-2', name: 'action' },

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const MovieCreateForm = () => {
+const MovieCreateForm = (props) => {
 	const [formProps, setFormProps] = useState({
 		name: '',
 		description: '',
@@ -62,6 +62,10 @@ const MovieCreateForm = () => {
 				}
 			}
 		}
+	};
+
+	const submitForm = () => {
+		props.handleFormSubmit({ ...formProps });
 	};
 
 	return (
@@ -180,6 +184,13 @@ const MovieCreateForm = () => {
 					))}
 				</div>
 			</div>
+			<button
+				onClick={submitForm}
+				type='button'
+				className='btn btn-primary main-font-size'
+			>
+				Create
+			</button>
 			<style>{`
         .form-control {
           font-size: var(--normal-size-text-1)

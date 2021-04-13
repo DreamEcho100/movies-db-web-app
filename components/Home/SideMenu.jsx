@@ -1,14 +1,22 @@
 import { useState } from 'react';
 
+import { createMovie } from '../../actions';
+
 import Modal from '../Modal';
 import MovieCreateForm from './MovieCreateForm';
 
 const SideMenu = ({ catagories }) => {
+	const handleCreateMovie = (movie) => {
+		createMovie(movie).then((movies) => {
+			console.log(JSON.stringify(movies));
+		});
+	};
+
 	return (
 		<>
 			<div style={{ marginTop: '1em' }}>
-				<Modal>
-					<MovieCreateForm />
+				<Modal hasSubmit={false}>
+					<MovieCreateForm handleFormSubmit={handleCreateMovie} />
 				</Modal>
 			</div>
 			<h1 style={{ fontSize: 'calc(var(--header1) - 1rem)' }} className='my-4'>
