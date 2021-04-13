@@ -1,5 +1,5 @@
 import {
-	addToHead,
+	AddToHead,
 	DescriptionMetaTag,
 	handleDescription,
 	KeywordsMetaTag,
@@ -11,23 +11,25 @@ import {
 const Contact = () => {
 	return (
 		<>
-			{addToHead([
-				TitleMetaTag(
-					handleTitle({
-						addFirst: 'Contact - ',
-					})
-				),
-				KeywordsMetaTag(
-					handleKeywords({
-						addFirst: ['Contact Page'],
-					})
-				),
-				DescriptionMetaTag(
-					handleDescription({
-						addFirst: 'Contact Page, ',
-					})
-				),
-			])}
+			<AddToHead
+				elements={[
+					TitleMetaTag({
+						title: handleTitle({
+							addFirst: 'Contact - ',
+						}),
+					}),
+					KeywordsMetaTag({
+						keywords: handleKeywords({
+							addFirst: ['Contact Page'],
+						}),
+					}),
+					DescriptionMetaTag({
+						description: handleDescription({
+							addFirst: 'Contact Page, ',
+						}),
+					}),
+				]}
+			/>
 			<section className='container'>
 				<h1>Hello Contact!</h1>
 			</section>

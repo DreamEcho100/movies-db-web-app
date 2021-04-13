@@ -4,7 +4,7 @@ import { getMovies, getCatagories } from '../actions/index';
 
 import Carousel from '../components/Home/Carousel';
 import {
-	addToHead,
+	AddToHead,
 	DescriptionMetaTag,
 	handleDescription,
 	KeywordsMetaTag,
@@ -18,23 +18,25 @@ import SideMenu from '../components/Home/SideMenu';
 const Home = ({ movies, images, catagories, errorMessage }) => {
 	return (
 		<>
-			{addToHead([
-				TitleMetaTag(
-					handleTitle({
-						addFirst: 'Home - ',
-					})
-				),
-				KeywordsMetaTag(
-					handleKeywords({
-						addFirst: ['Home Page'],
-					})
-				),
-				DescriptionMetaTag(
-					handleDescription({
-						addFirst: 'Home Page "Noooooooooooooooooice!", ',
-					})
-				),
-			])}
+			<AddToHead
+				elements={[
+					TitleMetaTag({
+						title: handleTitle({
+							addFirst: 'Home - ',
+						}),
+					}),
+					KeywordsMetaTag({
+						keywords: handleKeywords({
+							addFirst: ['Home Page'],
+						}),
+					}),
+					DescriptionMetaTag({
+						description: handleDescription({
+							addFirst: 'Home Page, "Noooooooooooooooooice!", ',
+						}),
+					}),
+				]}
+			/>
 			<section className='container'>
 				<div className='row'>
 					<div className='col-lg-3'>

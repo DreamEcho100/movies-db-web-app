@@ -1,5 +1,5 @@
 import {
-	addToHead,
+	AddToHead,
 	DescriptionMetaTag,
 	handleDescription,
 	KeywordsMetaTag,
@@ -11,23 +11,30 @@ import {
 const About = () => {
 	return (
 		<>
-			{addToHead([
-				TitleMetaTag(
-					handleTitle({
-						addFirst: 'About - ',
-					})
-				),
-				KeywordsMetaTag(
-					handleKeywords({
-						addFirst: ['About Page'],
-					})
-				),
-				DescriptionMetaTag(
-					handleDescription({
-						addFirst: 'About Page, ',
-					})
-				),
-			])}
+			<AddToHead
+				elements={[
+					// <TitleMetaTag
+					// 	title={handleTitle({
+					// 		addFirst: 'About - ',
+					// 	})}
+					// />,
+					TitleMetaTag({
+						title: handleTitle({
+							addFirst: 'About - ',
+						}),
+					}),
+					KeywordsMetaTag({
+						keywords: handleKeywords({
+							addFirst: ['About Page'],
+						}),
+					}),
+					DescriptionMetaTag({
+						description: handleDescription({
+							addFirst: 'About Page, ',
+						}),
+					}),
+				]}
+			/>
 			<section className='container'>
 				<h1>Hello About!</h1>
 			</section>

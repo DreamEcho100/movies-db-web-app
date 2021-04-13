@@ -11,23 +11,25 @@ import {
 const Services = () => {
 	return (
 		<>
-			{addToHead([
-				TitleMetaTag(
-					handleTitle({
-						addFirst: 'Services - ',
-					})
-				),
-				KeywordsMetaTag(
-					handleKeywords({
-						addFirst: ['Services Page'],
-					})
-				),
-				DescriptionMetaTag(
-					handleDescription({
-						addFirst: 'Services Page, ',
-					})
-				),
-			])}
+			<AddToHead
+				elements={[
+					TitleMetaTag({
+						title: handleTitle({
+							addFirst: 'Services - ',
+						}),
+					}),
+					KeywordsMetaTag({
+						keywords: handleKeywords({
+							addFirst: ['Services Page'],
+						}),
+					}),
+					DescriptionMetaTag({
+						description: handleDescription({
+							addFirst: 'Services Page, ',
+						}),
+					}),
+				]}
+			/>
 			<section className='container'>
 				<h1>Hello Services!</h1>
 			</section>

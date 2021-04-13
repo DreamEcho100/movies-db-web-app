@@ -24,18 +24,28 @@ const firstLetterToLowerCase = (string) => {
 // 	return <Head>{element}</Head>;
 // };
 
-export const addToHead = (array) => {
+// export const addManyToHead = (array) => {
+// 	return (
+// 		<Head>
+// 			{array.map((element, index) => (
+// 				<Fragment key={index}>{element}</Fragment>
+// 			))}
+// 		</Head>
+// 	);
+// };
+
+export const AddToHead = ({ elements = [] }) => {
 	return (
 		<Head>
-			{array.map((element, index) => (
+			{elements.map((element, index) => (
 				<Fragment key={index}>{element}</Fragment>
 			))}
 		</Head>
 	);
 };
 
-export const handleTitle = ({ title, addFirst, addLast }) => {
-	let tempString = title ? title : defaultTitle;
+export const handleTitle = ({ title = defaultTitle, addFirst, addLast }) => {
+	let tempString = title;
 
 	tempString = addFirst
 		? `${addFirst}${firstLetterToLowerCase(tempString)}`
@@ -46,18 +56,26 @@ export const handleTitle = ({ title, addFirst, addLast }) => {
 	return tempString;
 };
 
-export const handleKeywords = ({ keywords, addFirst, addLast }) => {
-	let tempArray = keywords ? keywords : defaultKeywords;
+export const handleKeywords = ({
+	keywords = defaultKeywords,
+	addFirst,
+	addLast,
+}) => {
+	let tempArray = keywords;
 
 	tempArray = addFirst ? [...addFirst, ...tempArray] : tempArray;
 
 	tempArray = addLast ? [...tempArray, ...addLast] : tempArray;
 
-	return tempArray.join(', ');
+	return tempArray.join(',');
 };
 
-export const handleDescription = ({ description, addFirst, addLast }) => {
-	let tempString = description ? description : defaultDescription;
+export const handleDescription = ({
+	description = defaultDescription,
+	addFirst,
+	addLast,
+}) => {
+	let tempString = description;
 
 	tempString = addFirst ? `${addFirst}${tempString}` : tempString;
 
@@ -271,8 +289,9 @@ export const CacheControlMetaTag = (NoCache) => {
 };
 
 //
-export const KeywordsMetaTag = (keywords, addToHead, props) => {
-	let mainKeywords;
+export const KeywordsMetaTag = ({ keywords = handleKeywords() }) => {
+	return <meta name='keywords' content={keywords} />;
+	// let mainKeywords;
 	// if (addToHead) {
 	// 	mainKeywords = handleKeywords(props);
 	// 	return (
@@ -281,13 +300,14 @@ export const KeywordsMetaTag = (keywords, addToHead, props) => {
 	// 		</Head>
 	// 	);
 	// } else {
-	mainKeywords = keywords ? keywords : defaultKeywords.join(', ');
-	return <meta name='keywords' content={mainKeywords} />;
+	// mainKeywords = keywords ? keywords : defaultKeywords.join(', ');
+	// return <meta name='keywords' content={mainKeywords} />;
 	// }
 };
 
-export const DescriptionMetaTag = (description, addToHead, props) => {
-	let mainDescription;
+export const DescriptionMetaTag = ({ description = handleDescription() }) => {
+	return <meta name='description' content={description} />;
+	// let mainDescription;
 	// if (addToHead) {
 	// 	mainDescription = handleDescription(props);
 	// 	return (
@@ -296,8 +316,8 @@ export const DescriptionMetaTag = (description, addToHead, props) => {
 	// 		</Head>
 	// 	);
 	// } else {
-	mainDescription = description ? description : defaultDescription;
-	return <meta name='description' content={mainDescription} />;
+	// mainDescription = description ? description : defaultDescription;
+	// return <meta name='description' content={mainDescription} />;
 	// }
 };
 
@@ -316,8 +336,9 @@ export const IconsMetaTags = ({ icon, svgIcon, appleIcon }) => {
 	);
 };
 
-export const TitleMetaTag = (title, addToHead, props) => {
-	let mainTitle;
+export const TitleMetaTag = ({ title = handleTitle() }) => {
+	return <title>{title}</title>;
+	// let mainTitle;
 	// if (addToHead) {
 	// 	mainTitle = handleTitle(props);
 	// 	return (
@@ -326,8 +347,8 @@ export const TitleMetaTag = (title, addToHead, props) => {
 	// 		</Head>
 	// 	);
 	// } else {
-	mainTitle = title ? title : defaultTitle;
-	return <title>{mainTitle}</title>;
+	// mainTitle = title ? title : defaultTitle;
+	// return <title>{mainTitle}</title>;
 	// }
 };
 
@@ -396,8 +417,12 @@ export const DefaultMetaTags = ({
 			{CacheControlMetaTag(cacheControlNoCache)}
 			{AuthorMetaTag(mainAuthor)}
 			{CopyrightOwnerMetaTag(mainCopyrightOwner)}
-			{KeywordsMetaTag(mainKeywords)}
-			{DescriptionMetaTag(mainDescription)}
+			{KeywordsMetaTag({
+				keywords: mainKeywords,
+			})}
+			{DescriptionMetaTag({
+				description: mainDescription,
+			})}
 			{/* <link rel="icon" href="/favicon.ico" />
 			<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 			<link rel="apple-touch-icon" href="/apple-touch-icon.png" /> */}
@@ -407,7 +432,9 @@ export const DefaultMetaTags = ({
 				mainAppleIcon,
 			})}
 			{extraTags}
-			{TitleMetaTag(title)}
+			{TitleMetaTag({
+				title: mainTitle,
+			})}
 		</Head>
 	);
 };
