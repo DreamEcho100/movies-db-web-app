@@ -6,16 +6,19 @@ import Modal from '../Modal';
 import MovieCreateForm from './MovieCreateForm';
 
 const SideMenu = ({ catagories }) => {
+	let modal = null;
+
 	const handleCreateMovie = (movie) => {
 		createMovie(movie).then((movies) => {
-			console.log(JSON.stringify(movies));
+			// console.log(JSON.stringify(movies));
+			modal.closeModal();
 		});
 	};
 
 	return (
 		<>
 			<div style={{ marginTop: '1em' }}>
-				<Modal hasSubmit={false}>
+				<Modal ref={(element) => (modal = element)} hasSubmit={false}>
 					<MovieCreateForm handleFormSubmit={handleCreateMovie} />
 				</Modal>
 			</div>

@@ -39,8 +39,6 @@ const MovieCreateForm = (props) => {
 	// 		}
 	// 	}
 
-	// 	console.log(name, value);
-
 	// 	setFormProps({
 	// 		...formProps,
 	// 		[name]: value.toString(),
@@ -53,7 +51,6 @@ const MovieCreateForm = (props) => {
 
 		for (let i = 0; i < optionsLength; i++) {
 			if (options[i].selected) {
-				console.log(options[i].value);
 				if (!formProps.genre.some((item) => item === options[i].value)) {
 					setFormProps({
 						...formProps,
@@ -191,63 +188,63 @@ const MovieCreateForm = (props) => {
 			>
 				Create
 			</button>
-			<style>{`
-        .form-control {
-          font-size: var(--normal-size-text-1)
-        }
-        .genre-selection-group {
-          width: 100%;
-          margin: 0.5em auto 0 auto;
-          display: flex;
-          align-items: center;
-          justify-content: flex-start;
+			<style jsx>{`
+				.form-control {
+					font-size: var(--normal-size-text-1);
+				}
+				.genre-selection-group {
+					width: 100%;
+					margin: 0.5em auto 0 auto;
+					display: flex;
+					align-items: center;
+					justify-content: flex-start;
 					flex-wrap: wrap;
-          user-select: none;
-        }
-        .genre-selection-item {
+					user-select: none;
+				}
+				.genre-selection-item {
 					min-width: fit-content;
-          border: 0.2rem solid gray;
-          padding: 0.125em 0.25em;
-          border-radius: 0.5rem;
-          position: relative;
-          overflow: hidden;
+					border: 0.2rem solid gray;
+					padding: 0.125em 0.25em;
+					border-radius: 0.5rem;
+					position: relative;
+					overflow: hidden;
 					margin: 0 0.25em 0.25em 0.25em;
-        }
-        .remove-genre-btn {
-          position: absolute;
-          top: -0.08rem;
-          right: -0.01rem;
-          height: 1rem;
-          width: 1rem;
-          cursor: pointer;
-          overflow: hidden;
-        }
-        .remove-genre-btn-container {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          --font-color: black;
-        }
-        .remove-genre-btn-container::before,
-        .remove-genre-btn-container::after {
-          content: '';
-          position: absolute;
-          top: 50%;
-          width: 125%;
-          height: 20%;
-          background-color: var(--font-color);
-          transform-origin: center;
-        }
-        .remove-genre-btn-container:hover {
-          --font-color: gray;
-        }
-        .remove-genre-btn-container::before {
-          transform: translate(0, -50%) rotate(45deg);
-        }
-        .remove-genre-btn-container::after {
-          transform: translate(0, -50%) rotate(-45deg);
-        }
-      `}</style>
+				}
+				.remove-genre-btn {
+					position: absolute;
+					top: -0.08rem;
+					right: -0.01rem;
+					height: 1rem;
+					width: 1rem;
+					cursor: pointer;
+					overflow: hidden;
+				}
+				.remove-genre-btn-container {
+					position: relative;
+					width: 100%;
+					height: 100%;
+					--font-color: black;
+				}
+				.remove-genre-btn-container::before,
+				.remove-genre-btn-container::after {
+					content: '';
+					position: absolute;
+					top: 50%;
+					width: 125%;
+					height: 20%;
+					background-color: var(--font-color);
+					transform-origin: center;
+				}
+				.remove-genre-btn-container:hover {
+					--font-color: gray;
+				}
+				.remove-genre-btn-container::before {
+					transform: translate(0, -50%) rotate(45deg);
+				}
+				.remove-genre-btn-container::after {
+					transform: translate(0, -50%) rotate(-45deg);
+				}
+			`}</style>
 		</form>
 	);
 };

@@ -13,11 +13,13 @@ const defaultAppleIcon = '/favicon.ico';
 const defaultCopyrightOwner = 'DreamEcho100';
 
 const firstLetterToLowerCase = (string) => {
-	let tempArray = string.split('');
+	// let tempArray = string.split('');
 
-	tempArray[0] = tempArray[0].toLowerCase();
+	// tempArray[0] = tempArray[0].toLowerCase();
 
-	return tempArray.join('');
+	// return tempArray.join('');
+
+	return `${string[0].toLowerCase() || ''} ${string.substr(1, string.length)}`;
 };
 
 // export const addToHead = (element) => {
