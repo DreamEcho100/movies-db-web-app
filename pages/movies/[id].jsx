@@ -8,7 +8,7 @@ const Movie = (props) => {
 	console.log(movie);
 	return (
 		<section className='container'>
-			<h1>Movies with id: {movie.id}</h1>
+			{/* <h1>Movies with id: {movie.id}</h1> */}
 			<div className='jumbotron text-dark border border-secondary'>
 				<h1 className='display-4'>{movie.name}</h1>
 				<p className='lead'>{movie.description}</p>
