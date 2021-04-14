@@ -1,5 +1,15 @@
 import { useRouter } from 'next/router';
+
 import { getMoviesById } from '../../actions';
+import {
+	AddToHead,
+	DescriptionMetaTag,
+	handleDescription,
+	KeywordsMetaTag,
+	handleKeywords,
+	TitleMetaTag,
+	handleTitle,
+} from '../../components/Meta/MetaTagsActions';
 
 const Movie = (props) => {
 	const router = useRouter();
@@ -8,6 +18,25 @@ const Movie = (props) => {
 	console.log(movie);
 	return (
 		<section className='container'>
+			<AddToHead
+				elements={[
+					TitleMetaTag({
+						title: handleTitle({
+							addFirst: `${movie.name} - `,
+						}),
+					}),
+					KeywordsMetaTag({
+						keywords: handleKeywords({
+							addFirst: [movie.name],
+						}),
+					}),
+					DescriptionMetaTag({
+						description: handleDescription({
+							addFirst: `${movie.name} description: ${movie.description}`,
+						}),
+					}),
+				]}
+			/>
 			{/* <h1>Movies with id: {movie.id}</h1> */}
 			<div className='jumbotron text-dark border border-secondary'>
 				<h1 className='display-4'>{movie.name}</h1>
