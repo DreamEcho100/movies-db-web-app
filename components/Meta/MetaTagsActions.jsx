@@ -12,29 +12,15 @@ const defaultSvgIcon = '/vercel.svg';
 const defaultAppleIcon = '/favicon.ico';
 const defaultCopyrightOwner = 'DreamEcho100';
 
-const firstLetterToLowerCase = (string) => {
+export const firstLetterToLowerCase = (string) => {
 	// let tempArray = string.split('');
 
 	// tempArray[0] = tempArray[0].toLowerCase();
 
 	// return tempArray.join('');
 
-	return `${string[0].toLowerCase() || ''} ${string.substr(1, string.length)}`;
+	return `${string[0].toLowerCase() || ''}${string.substr(1, string.length)}`;
 };
-
-// export const addToHead = (element) => {
-// 	return <Head>{element}</Head>;
-// };
-
-// export const addManyToHead = (array) => {
-// 	return (
-// 		<Head>
-// 			{array.map((element, index) => (
-// 				<Fragment key={index}>{element}</Fragment>
-// 			))}
-// 		</Head>
-// 	);
-// };
 
 export const AddToHead = ({ elements = [] }) => {
 	return (
@@ -49,9 +35,7 @@ export const AddToHead = ({ elements = [] }) => {
 export const handleTitle = ({ title = defaultTitle, addFirst, addLast }) => {
 	let tempString = title;
 
-	tempString = addFirst
-		? `${addFirst}${firstLetterToLowerCase(tempString)}`
-		: tempString;
+	tempString = addFirst ? `${addFirst}${tempString}` : tempString;
 
 	tempString = addLast ? `${tempString}${addLast}` : tempString;
 
@@ -135,7 +119,7 @@ export const handleDescription = ({
 };
 
 //
-export const RobotsMetaTag = (index, follow) => {
+export const RobotsMetaTag = (index = true, follow = true) => {
 	return (
 		<meta
 			name='robots'
@@ -170,7 +154,7 @@ export const GraphMetaTags = (graphMetaProps, extraProps) => {
 	mainTitle = mainTitle ? mainTitle : defaultTitle;
 	mainImage = mainImage ? mainImage : defaultIcon;
 
-	const articleMeta = [
+	/*const articleMeta = [
 		{
 			propertyType: 'article:publisher',
 			content: mainUrl, // 'https://www.facebook.com/'
@@ -183,13 +167,13 @@ export const GraphMetaTags = (graphMetaProps, extraProps) => {
 			propertyType: 'article:modified_time',
 			content: '', // '2020-01-29T23:21:55+00:00'
 		},
-	];
+	];*/
 
 	// <meta property="article:publisher" content="https://www.facebook.com/CSSTricks">
 	// <meta property="article:published_time" content="2016-05-25T15:27:16+00:00">
 	// <meta property="article:modified_time" content="2020-01-29T23:21:55+00:00">
 
-	const twitterMeta = [
+	/*const twitterMeta = [
 		{
 			nameType: 'card',
 			content: 'summary_large_image',
@@ -218,7 +202,7 @@ export const GraphMetaTags = (graphMetaProps, extraProps) => {
 			nameType: 'data2',
 			content: '', // 4 minutes
 		},
-	];
+	];*/
 
 	// <meta name="twitter:card" content="summary_large_image">
 	// <meta name="twitter:creator" content="@chriscoyier">
@@ -240,7 +224,7 @@ export const GraphMetaTags = (graphMetaProps, extraProps) => {
 
 	return (
 		<>
-			{socialWebSites.map((socialWebSite, index) => (
+			{/* {socialWebSites.map((socialWebSite, index) => (
 				<Fragment key={index}>
 					<meta
 						name={`${socialWebSite.target}:card`}
@@ -255,7 +239,7 @@ export const GraphMetaTags = (graphMetaProps, extraProps) => {
 						content={socialWebSite.creator}
 					/>
 				</Fragment>
-			))}
+			))} */}
 			<meta property='og:locale' content={ogLocale} />
 			<meta property='og:type' content={ogType} />
 			<meta property='og:title' content={ogTitle} />
@@ -268,90 +252,51 @@ export const GraphMetaTags = (graphMetaProps, extraProps) => {
 };
 
 //
-export const CopyrightOwnerMetaTag = (owner) => {
-	const mainCopyrightOwner = owner ? owner : defaultCopyrightOwner;
-	return (
-		<meta name='copyright' content={`Copyright owner: ${mainCopyrightOwner}`} />
-	);
+export const CopyrightOwnerMetaTag = (owner = defaultCopyrightOwner) => {
+	return <meta name='copyright' content={`Copyright owner: ${owner}`} />;
 };
 
 //
-export const AuthorMetaTag = (author) => {
-	const mainAuthor = author ? author : defaultAuthor;
-	return <meta name='author' content={mainAuthor} />;
+export const AuthorMetaTag = (author = defaultAuthor) => {
+	return <meta name='author' content={author} />;
 };
 
 //
-export const CacheControlMetaTag = (NoCache) => {
-	if (!NoCache) {
-		return null;
-	}
-
+export const CacheControlMetaTag = () => {
 	return <meta httpEquiv='cache-control' content='no-cache' />;
 };
 
 //
 export const KeywordsMetaTag = ({ keywords = handleKeywords() }) => {
 	return <meta name='keywords' content={keywords} />;
-	// let mainKeywords;
-	// if (addToHead) {
-	// 	mainKeywords = handleKeywords(props);
-	// 	return (
-	// 		<Head>
-	// 			<meta name='keywords' content={mainKeywords} />
-	// 		</Head>
-	// 	);
-	// } else {
-	// mainKeywords = keywords ? keywords : defaultKeywords.join(', ');
-	// return <meta name='keywords' content={mainKeywords} />;
-	// }
 };
 
 export const DescriptionMetaTag = ({ description = handleDescription() }) => {
 	return <meta name='description' content={description} />;
-	// let mainDescription;
-	// if (addToHead) {
-	// 	mainDescription = handleDescription(props);
-	// 	return (
-	// 		<Head>
-	// 			<meta name='description' content={mainDescription} />
-	// 		</Head>
-	// 	);
-	// } else {
-	// mainDescription = description ? description : defaultDescription;
-	// return <meta name='description' content={mainDescription} />;
-	// }
 };
 
 //
-export const IconsMetaTags = ({ icon, svgIcon, appleIcon }) => {
-	const mainIcon = icon ? icon : defaultIcon;
-	const mainSvgIcon = svgIcon ? svgIcon : defaultSvgIcon;
-	const mainAppleIcon = appleIcon ? appleIcon : defaultAppleIcon;
-
+export const IconsMetaTags = ({
+	icon = defaultIcon,
+	svgIcon = defaultSvgIcon,
+	appleIcon = defaultAppleIcon,
+}) => {
+	{
+		/* <link rel="icon" href="/favicon.ico" />
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png" /> */
+	}
 	return (
 		<>
-			<link rel='icon' href={mainIcon} />
-			<link rel='icon' href={mainSvgIcon} type='image/svg+xml' />
-			<link rel='apple-touch-icon' href={mainAppleIcon} />
+			<link rel='icon' href={icon} />
+			<link rel='icon' href={svgIcon} type='image/svg+xml' />
+			<link rel='apple-touch-icon' href={appleIcon} />
 		</>
 	);
 };
 
 export const TitleMetaTag = ({ title = handleTitle() }) => {
 	return <title>{title}</title>;
-	// let mainTitle;
-	// if (addToHead) {
-	// 	mainTitle = handleTitle(props);
-	// 	return (
-	// 		<Head>
-	// 			<title>{mainTitle}</title>
-	// 		</Head>
-	// 	);
-	// } else {
-	// mainTitle = title ? title : defaultTitle;
-	// return <title>{mainTitle}</title>;
-	// }
 };
 
 export const DefaultMetaTags = ({
@@ -425,9 +370,6 @@ export const DefaultMetaTags = ({
 			{DescriptionMetaTag({
 				description: mainDescription,
 			})}
-			{/* <link rel="icon" href="/favicon.ico" />
-			<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-			<link rel="apple-touch-icon" href="/apple-touch-icon.png" /> */}
 			{IconsMetaTags({
 				mainIcon,
 				mainSvgIcon,

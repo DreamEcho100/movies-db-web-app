@@ -1,5 +1,5 @@
 import {
-	addToHead,
+	AddToHead,
 	DescriptionMetaTag,
 	handleDescription,
 	KeywordsMetaTag,
