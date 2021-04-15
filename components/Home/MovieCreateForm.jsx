@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 const MovieCreateForm = (props) => {
-	const [formProps, setFormProps] = useState({
+	const defaultData = {
 		name: '',
 		description: '',
 		rating: 0,
@@ -9,7 +9,20 @@ const MovieCreateForm = (props) => {
 		cover: '',
 		longDesc: '',
 		genre: [],
-	});
+	};
+
+	const [isInitialDataLoaded, setIsInitialDataLoaded] = useState(false);
+
+	const formData = props.initialData
+		? () => {
+				if (!Array.isArray(props.initialData.genre)) {
+					props.initialData.genre = props.initialData.genre.split(',');
+				}
+				return { ...defaultData, ...props.initialData };
+		  }
+		: defaultData;
+
+	const [formProps, setFormProps] = useState(formData);
 
 	const handleChange = (event) => {
 		const target = event.target;
@@ -64,7 +77,6 @@ const MovieCreateForm = (props) => {
 	const submitForm = () => {
 		props.handleFormSubmit({
 			...formProps,
-			genre: formProps.genre.join(','),
 		});
 	};
 

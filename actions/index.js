@@ -18,7 +18,14 @@ export const getMovies = () => {
 		headers: {
 			'Content-type': 'application/json',
 		},
-	}).then((response) => response.json());
+	})
+		.then((response) => response.json())
+		.then((response) => {
+			if (response.status === 'fail') {
+				console.error(response.message);
+			}
+			return response.data;
+		});
 };
 
 export const getMoviesById = (id) => {
@@ -40,7 +47,14 @@ export const getMoviesById = (id) => {
 		headers: {
 			'Content-type': 'application/json',
 		},
-	}).then((response) => response.json());
+	})
+		.then((response) => response.json())
+		.then((response) => {
+			if (response.status === 'fail') {
+				console.error(response.message);
+			}
+			return response.data;
+		});
 };
 
 export const createMovie = (movie) => {
@@ -58,15 +72,53 @@ export const createMovie = (movie) => {
 
 	// return data;
 	movie.id = Math.random().toString(36).substr(2, 7).toLowerCase();
-	const response = fetch(`${BASE_URL}/api/v1/movies`, {
+	return fetch(`${BASE_URL}/api/v1/movies`, {
 		method: 'POST',
 		headers: {
 			'Content-type': 'application/json',
 		},
 		body: JSON.stringify(movie),
-	}); // .then((response) => response.json());
-	const data = response; // JSON.parse(response);
-	return data;
+	})
+		.then((response) => response.json())
+		.then((response) => {
+			if (response.status === 'fail') {
+				console.error(response.message);
+			}
+			return response.data;
+		});
+};
+
+export const deleteMovie = (id) => {
+	return fetch(`${BASE_URL}/api/v1/movies/${id}`, {
+		method: 'DELETE',
+		headers: {
+			'Content-type': 'application/json',
+		},
+	})
+		.then((response) => response.json())
+		.then((response) => {
+			if (response.status === 'fail') {
+				console.error(response.message);
+			}
+			return response.data;
+		});
+};
+
+export const updateMovie = (movie) => {
+	return fetch(`${BASE_URL}/api/v1/movies/${movie.id}`, {
+		method: 'PATCH',
+		headers: {
+			'Content-type': 'application/json',
+		},
+		body: JSON.stringify(movie),
+	})
+		.then((response) => response.json())
+		.then((response) => {
+			if (response.status === 'fail') {
+				console.error(response.message);
+			}
+			return response.data;
+		});
 };
 
 const CATEGORY_DATA = [

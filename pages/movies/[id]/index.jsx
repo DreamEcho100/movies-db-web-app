@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 
-import { getMoviesById } from '../../actions';
+import { getMoviesById, deleteMovie } from '../../../actions';
 import {
 	AddToHead,
 	DescriptionMetaTag,
@@ -9,13 +9,19 @@ import {
 	handleKeywords,
 	TitleMetaTag,
 	handleTitle,
-} from '../../components/Meta/MetaTagsActions';
+} from '../../../components/Meta/MetaTagsActions';
 
 const Movie = (props) => {
 	const router = useRouter();
 	const { id } = router.query;
 	const { movie } = props;
-	console.log(movie);
+
+	const handleDeleteMovie = async (id) => {
+		await deleteMovie(id).then(() => {
+			router.push('/');
+		});
+	};
+
 	return (
 		<section className='container'>
 			<AddToHead
@@ -42,12 +48,36 @@ const Movie = (props) => {
 				<h1 className='display-4'>{movie.name}</h1>
 				<p className='lead'>{movie.description}</p>
 				<hr className='my-4' />
-				<p className='lead'>{movie.genre}</p>
-				<a className='btn btn-primary btn-lg' href='#' role='button'>
-					Learn more
-				</a>
+				<p className='lead'>
+					{movie.genre
+						.map(
+							(item) => `${item[0].toUpperCase()}${item.substr(1, item.length)}`
+						)
+						.join(', ')}
+				</p>
+				<button
+					className='movie__jumbotron__btn btn btn-danger btn-lg main-font-size'
+					onClick={() => handleDeleteMovie(id)}
+					href='#'
+					role='button'
+				>
+					Delete
+				</button>
+				<button
+					className='movie__jumbotron__btn btn btn-warning btn-lg main-font-size'
+					onClick={() => router.push(`${id}/edit`)}
+					href='#'
+					role='button'
+				>
+					Edit
+				</button>
 			</div>
 			<p className='desc-text'>{movie.longDesc}</p>
+			<style jsx>{`
+				.movie__jumbotron__btn {
+					margin: 0 0.5em 0 0;
+				}
+			`}</style>
 		</section>
 	);
 };

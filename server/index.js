@@ -42,41 +42,144 @@ app.prepare().then(() => {
 	server.use(cors());
 
 	server.get('/api/v1/movies', (request, response) => {
-		// return response.json({ message: 'Hello World!' });
-		return response.json(moviesData);
+		try {
+			return response.json({
+				status: 'success',
+				message: '',
+				data: moviesData,
+			});
+		} catch (error) {
+			console.error(error);
+			return response.status(404).json({
+				status: 'fail',
+				message: error.message,
+				data: [],
+			});
+		}
 	});
 
 	server.get('/api/v1/movies/:id', (request, response) => {
-		const { id } = request.params;
-		const movie = moviesData.find((item) => item.id === id);
-		return response.json(movie);
+		try {
+			const { id } = request.params;
+			const movie = moviesData.find((item) => item.id === id);
+			return response.json({
+				status: 'success',
+				message: '',
+				data: movie,
+			});
+		} catch (error) {
+			console.error(error);
+			return response.status(404).json({
+				status: 'fail',
+				message: error.message,
+				data: [],
+			});
+		}
 	});
 
 	server.post('/api/v1/movies', (request, response) => {
-		const movie = request.body;
+		try {
+			const movie = request.body;
 
-		moviesData.push(movie);
+			moviesData.push(movie);
 
-		const pathToFile = path.join(__dirname, moviesDataPath);
-		const stringfiedData = JSON.stringify(moviesData, null, 2);
+			const pathToFile = path.join(__dirname, moviesDataPath);
+			const stringfiedData = JSON.stringify(moviesData, null, 2);
 
-		fs.writeFile(pathToFile, stringfiedData, error => {
-			if (error) {
-				return response.status(422).send(error);
-			}
+			fs.writeFile(pathToFile, stringfiedData, (error) => {
+				if (error) {
+					return response.status(422).json({
+						status: 'fail',
+						message: error.message,
+						data: [],
+					});
+				}
 
-			return response.json('Movie has been added!')
-		});
+				return response.json({
+					status: 'success',
+					message: 'Movie has been added!',
+					data: [],
+				});
+			});
+		} catch (error) {
+			console.error(error);
+			return response.status(404).json({
+				status: 'fail',
+				message: error.message,
+				data: [],
+			});
+		}
 	});
 
 	server.patch('/api/v1/movies/:id', (request, response) => {
-		const { id } = request.params;
-		return response.json({ message: `Updating post of id: ${id}` });
+		try {
+			const { id } = request.params;
+			const movie = request.body;
+			const movieIndex = moviesData.findIndex((item) => item.id === id);
+
+			moviesData[movieIndex] = movie;
+
+			const pathToFile = path.join(__dirname, moviesDataPath);
+			const stringfiedData = JSON.stringify(moviesData, null, 2);
+
+			fs.writeFile(pathToFile, stringfiedData, (error) => {
+				if (error) {
+					return response.status(422).json({
+						status: 'fail',
+						message: error.message,
+						data: [],
+					});
+				}
+
+				return response.json({
+					status: 'success',
+					message: 'Movie has been added!',
+					data: [],
+				});
+			});
+		} catch (error) {
+			console.error(error);
+			return response.status(404).json({
+				status: 'fail',
+				message: error.message,
+				data: [],
+			});
+		}
 	});
 
 	server.delete('/api/v1/movies/:id', (request, response) => {
-		const { id } = request.params;
-		return response.json({ message: `Deleting post of id: ${id}` });
+		try {
+			const { id } = request.params;
+			// return response.json({ message: `Deleting post of id: ${id}` });
+			const movieIndex = moviesData.findIndex((item) => item.id === id);
+			moviesData.splice(movieIndex, 1);
+
+			const pathToFile = path.join(__dirname, moviesDataPath);
+			const stringfiedData = JSON.stringify(moviesData, null, 2);
+
+			fs.writeFile(pathToFile, stringfiedData, (error) => {
+				if (error) {
+					return response.status(422).json({
+						status: 'fail',
+						message: error.message,
+						data: [],
+					});
+				}
+
+				return response.json({
+					status: 'success',
+					message: 'Movie has been deleted!',
+					data: [],
+				});
+			});
+		} catch (error) {
+			console.error(error);
+			return response.status(404).json({
+				status: 'fail',
+				message: error.message,
+				data: [],
+			});
+		}
 	});
 
 	// server.get('/faq', (request, response) => {

@@ -21,7 +21,12 @@ class MoviesList extends Component {
 								releaseYear={releaseYear}
 								description={description}
 								rating={rating}
-								genre={genre}
+								genre={genre
+									.map(
+										(item) =>
+											`${item[0].toUpperCase()}${item.substr(1, item.length)}`
+									)
+									.join(', ')}
 								image={image}
 							/>
 						);
