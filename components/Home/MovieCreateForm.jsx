@@ -62,7 +62,10 @@ const MovieCreateForm = (props) => {
 	};
 
 	const submitForm = () => {
-		props.handleFormSubmit({ ...formProps });
+		props.handleFormSubmit({
+			...formProps,
+			genre: formProps.genre.join(','),
+		});
 	};
 
 	return (

@@ -22,44 +22,50 @@ export const getMovies = () => {
 };
 
 export const getMoviesById = (id) => {
-	const myPromise = new Promise((resolve, reject) => {
-		// const movieIndex = MOVIE_DATA.findIndex(movie => movie.id === id);
-		// const movie = MOVIE_DATA[movieIndex]
-		const movie = MOVIE_DATA.filter((movie) => movie.id === id);
-		setTimeout(() => {
-			resolve(JSON.stringify(movie));
-			reject('Cannot fetch data!');
-		}, 50);
-		/*
-		
-				{
-					method: 'POST',
-					headers: {
-						'Content-type': 'application/json',
-					},
-					body: JSON.stringify(body),
-				}
-		*/
-	});
+	// const myPromise = new Promise((resolve, reject) => {
+	// const movieIndex = MOVIE_DATA.findIndex(movie => movie.id === id);
+	// const movie = MOVIE_DATA[movieIndex]
+	// const movie = MOVIE_DATA.filter((movie) => movie.id === id);
+	// setTimeout(() => {
+	// 	resolve(JSON.stringify(movie));
+	// 	reject('Cannot fetch data!');
+	// }, 50);
+	// });
 
-	const data = myPromise.then((response) => JSON.parse(response)[0]);
+	// const data = myPromise.then((response) => JSON.parse(response)[0]);
 
-	return data;
+	// return data;
+	return fetch(`${BASE_URL}/api/v1/movies/${id}`, {
+		method: 'GET',
+		headers: {
+			'Content-type': 'application/json',
+		},
+	}).then((response) => response.json());
 };
 
 export const createMovie = (movie) => {
-	const myPromise = new Promise((resolve, reject) => {
-		// Create ID for movie
-		movie.id = Math.random().toString(36).substr(2, 7).toLowerCase();
-		MOVIE_DATA.push(movie);
-		setTimeout(() => {
-			resolve(JSON.stringify(MOVIE_DATA));
-			reject('Cannot fetch data!');
-		}, 50);
-	});
+	// const myPromise = new Promise((resolve, reject) => {
+	// Create ID for movie
+	// movie.id = Math.random().toString(36).substr(2, 7).toLowerCase();
+	// MOVIE_DATA.push(movie);
+	// setTimeout(() => {
+	// 	resolve(JSON.stringify(MOVIE_DATA));
+	// 	reject('Cannot fetch data!');
+	// }, 50);
+	// });
 
-	const data = myPromise.then((response) => JSON.parse(response));
+	// const data = myPromise.then((response) => JSON.parse(response));
 
+	// return data;
+	movie.id = Math.random().toString(36).substr(2, 7).toLowerCase();
+	const response = fetch(`${BASE_URL}/api/v1/movies`, {
+		method: 'POST',
+		headers: {
+			'Content-type': 'application/json',
+		},
+		body: JSON.stringify(movie),
+	}); // .then((response) => response.json());
+	const data = response; // JSON.parse(response);
 	return data;
 };
 

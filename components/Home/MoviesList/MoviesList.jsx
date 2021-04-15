@@ -27,8 +27,6 @@ class MoviesList extends Component {
 						);
 					}
 				)}
-
-				<MovieItem />
 			</>
 		);
 	}

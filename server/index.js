@@ -25,11 +25,14 @@ const { parse } = require('url');
 const next = require('next');
 const express = require('express');
 const cors = require('cors');
+const fs = require('fs');
+const path = require('path');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
-const moviesData = require('./data.json');
+const moviesDataPath = './data.json';
+const moviesData = require(moviesDataPath);
 
 app.prepare().then(() => {
 	const server = express();
@@ -43,11 +46,26 @@ app.prepare().then(() => {
 		return response.json(moviesData);
 	});
 
+	server.get('/api/v1/movies/:id', (request, response) => {
+		const { id } = request.params;
+		const movie = moviesData.find((item) => item.id === id);
+		return response.json(movie);
+	});
+
 	server.post('/api/v1/movies', (request, response) => {
 		const movie = request.body;
-		return response.json({
-			message: `Saving Post`,
-			data: JSON.stringify(movie),
+
+		moviesData.push(movie);
+
+		const pathToFile = path.join(__dirname, moviesDataPath);
+		const stringfiedData = JSON.stringify(moviesData, null, 2);
+
+		fs.writeFile(pathToFile, stringfiedData, error => {
+			if (error) {
+				return response.status(422).send(error);
+			}
+
+			return response.json('Movie has been added!')
 		});
 	});
 
