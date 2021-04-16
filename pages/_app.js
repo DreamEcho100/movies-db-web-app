@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 
-import '../styles/globals.css';
+// import '../styles/globals.css';
+import '../styles/index.scss';
 
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
