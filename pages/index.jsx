@@ -16,6 +16,23 @@ import MoviesList from '../components/Home/MoviesList/MoviesList';
 import SideMenu from '../components/Home/SideMenu';
 
 const Home = ({ movies, images, catagories, errorMessage }) => {
+	const [filter, setFilter] = useState(['all']);
+
+	const changeCategory = (category) => {
+		if (category === 'all') {
+			if (!filter.includes(category)) {
+				setFilter(['all']);
+			}
+		} else if (filter.includes(category)) {
+			setFilter([
+				...(filter.length === 1
+					? ['all']
+					: filter.filter((item) => item !== category)),
+			]);
+		} else {
+			setFilter([...filter.filter((item) => item !== 'all'), ...[category]]);
+		}
+	};
 	return (
 		<>
 			<AddToHead
@@ -40,10 +57,25 @@ const Home = ({ movies, images, catagories, errorMessage }) => {
 			<section className='container'>
 				<div className='row'>
 					<div className='col-lg-3'>
-						<SideMenu catagories={catagories} />
+						<SideMenu
+							changeCategory={changeCategory}
+							activeCategory={filter}
+							catagories={catagories}
+							appName={'Movie DB'}
+						/>
 					</div>
 
 					<div className='col-lg-9'>
+						<h1>
+							Displaying (
+							{filter
+								.map(
+									(item) =>
+										`${item[0].toUpperCase()}${item.substr(1, item.length)}`
+								)
+								.join(', ')}
+							) movies
+						</h1>
 						<Carousel images={images} />
 						<div className='row'>
 							{errorMessage && (
