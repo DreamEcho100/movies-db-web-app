@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 import { getMoviesById, deleteMovie } from '../../../actions';
 import {
@@ -63,14 +64,16 @@ const Movie = (props) => {
 				>
 					Delete
 				</button>
-				<button
-					className='movie__jumbotron__btn btn btn-warning btn-lg main-font-size'
-					onClick={() => router.push(`${id}/edit`)}
-					href='#'
-					role='button'
-				>
-					Edit
-				</button>
+				<Link href='/movies/[id]/edit' as={`/movies/${id}/edit`}>
+					<button
+						className='movie__jumbotron__btn btn btn-warning btn-lg main-font-size'
+						// onClick={() => router.push(`${id}/edit`)}
+						href='#'
+						role='button'
+					>
+						Edit
+					</button>
+				</Link>
 			</div>
 			<p className='desc-text'>{movie.longDesc}</p>
 			<style jsx>{`

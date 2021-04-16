@@ -201,7 +201,7 @@ const MovieCreateForm = (props) => {
 				type='button'
 				className='btn btn-primary main-font-size'
 			>
-				Create
+				{props.submitButton || 'Create'}
 			</button>
 			<style jsx>{`
 				.form-control {

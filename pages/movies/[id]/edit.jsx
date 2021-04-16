@@ -5,28 +5,11 @@ import MovieCreateForm from '../../../components/Home/MovieCreateForm';
 import { getMoviesById, updateMovie } from '../../../actions';
 
 class EditMovie extends Component {
-	// static getInitialProps({ query }) {
-	// 	return {
-	// 		query,
-	// 	};
-	// }
-
-	// state = {
-	// 	movie: {},
-	// };
-
 	static async getInitialProps({ query }) {
 		const movie = await getMoviesById(query.id);
 
 		return { movie };
 	}
-
-	// componentDidMount() {
-	// 	const { id } = this.props.query;
-	// 	getMoviesById(id).then((movie) => {
-	// 		this.setState({ movie });
-	// 	});
-	// }
 
 	handleUpdateMovie = (movie) => {
 		updateMovie(movie).then((updatedMovie) => {
@@ -42,6 +25,7 @@ class EditMovie extends Component {
 				{JSON.stringify(this.state)}
 				<MovieCreateForm
 					handleFormSubmit={this.handleUpdateMovie}
+					submitButton='Update'
 					initialData={movie}
 				/>
 			</div>
