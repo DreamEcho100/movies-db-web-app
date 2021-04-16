@@ -16,23 +16,48 @@ import MoviesList from '../components/Home/MoviesList/MoviesList';
 import SideMenu from '../components/Home/SideMenu';
 
 const Home = ({ movies, images, catagories, errorMessage }) => {
-	const [filter, setFilter] = useState(['all']);
+	const [genresArray, setGenresArray] = useState(['all']);
 
 	const changeCategory = (category) => {
 		if (category === 'all') {
-			if (!filter.includes(category)) {
-				setFilter(['all']);
+			if (!genresArray.includes(category)) {
+				setGenresArray(['all']);
 			}
-		} else if (filter.includes(category)) {
-			setFilter([
-				...(filter.length === 1
+		} else if (genresArray.includes(category)) {
+			setGenresArray([
+				...(genresArray.length === 1
 					? ['all']
-					: filter.filter((item) => item !== category)),
+					: genresArray.filter((item) => item !== category)),
 			]);
 		} else {
-			setFilter([...filter.filter((item) => item !== 'all'), ...[category]]);
+			setGenresArray([
+				...genresArray.filter((item) => item !== 'all'),
+				...[category],
+			]);
 		}
 	};
+
+	const filterMovies = (movies) => {
+		if (genresArray.includes('all')) {
+			return movies;
+		}
+
+		return movies.filter((movie) => {
+			// return filter.includes(movie.genre);
+			for (let i = 0; i < movie.genre.length; i++) {
+				if (genresArray.includes(movie.genre[i])) {
+					return true;
+				}
+			}
+		});
+		// console.log(movies);
+		// const temp = filter.forEach((genre) => {
+		// 	return movies.filter((movie) => movie.genre.includes(genre));
+		// });
+		// console.log(temp);
+		// return temp;
+	};
+
 	return (
 		<>
 			<AddToHead
@@ -59,7 +84,7 @@ const Home = ({ movies, images, catagories, errorMessage }) => {
 					<div className='col-lg-3'>
 						<SideMenu
 							changeCategory={changeCategory}
-							activeCategory={filter}
+							activeCategory={genresArray}
 							catagories={catagories}
 							appName={'Movie DB'}
 						/>
@@ -68,7 +93,7 @@ const Home = ({ movies, images, catagories, errorMessage }) => {
 					<div className='col-lg-9'>
 						<h1>
 							Displaying (
-							{filter
+							{genresArray
 								.map(
 									(item) =>
 										`${item[0].toUpperCase()}${item.substr(1, item.length)}`
@@ -86,7 +111,7 @@ const Home = ({ movies, images, catagories, errorMessage }) => {
 									{errorMessage}
 								</div>
 							)}
-							<MoviesList movies={movies} />
+							<MoviesList movies={filterMovies(movies)} />
 						</div>
 					</div>
 				</div>
