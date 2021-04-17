@@ -204,7 +204,7 @@ app.prepare().then(() => {
 		return handle(request, response);
 	});
 
-	server.listen(PORT, (error) => {
+	server.use(handle).listen(PORT, (error) => {
 		if (error) throw error;
 		console.log(`> Ready on port ${PORT}`);
 	});

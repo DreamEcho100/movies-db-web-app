@@ -11,6 +11,15 @@ const forSpecialColor1 = [
 		},
 	},
 	{
+		theme: 'theme-light-1',
+		colors: {
+      bgColor1: '--theme-light-1-bg-color-1',
+      fontColor1: '--theme-light-1-font-color-1',
+			specialColor1: '--theme-light-1-special-color-1',
+			specialColor2: '--theme-light-1-special-color-2',
+		},
+	},
+	{
 		theme: 'theme-light-2',
 		colors: {
       bgColor1: '--theme-light-2-bg-color-1',

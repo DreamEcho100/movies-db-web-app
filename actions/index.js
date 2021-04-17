@@ -121,6 +121,22 @@ export const updateMovie = (movie) => {
 		});
 };
 
+export const getPosts = () => {
+	return fetch(`${BASE_URL}/api/v1/posts`, {
+		method: 'GET',
+		headers: {
+			'Content-type': 'application/json',
+		},
+	})
+		.then((response) => response.json())
+		.then((response) => {
+			if (response.status === 'fail') {
+				console.error(response.message);
+			}
+			return response.data;
+		});
+};
+
 const CATEGORY_DATA = [
 	{ id: 'c-0', name: 'all' },
 	{ id: 'c-1', name: 'drama' },

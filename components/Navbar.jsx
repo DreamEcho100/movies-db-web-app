@@ -4,11 +4,11 @@ const Navbar = () => {
 	return (
 		<nav
 			style={{ zIndex: '30' }}
-			className='w-100 navbar navbar-expand-lg navbar-dark bg-dark fixed-top'
+			className='main-navbar w-100 navbar navbar-expand-lg navbar-dark bg-dark fixed-top'
 		>
 			<div className='container'>
 				<a className='navbar-brand main-font-size' href='#'>
-					Start Bootstrap
+					Movies DB Web App
 				</a>
 				<button
 					className='navbar-toggler main-font-size'
