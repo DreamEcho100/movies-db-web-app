@@ -4,7 +4,7 @@ import { Fragment } from 'react';
 const defaultUrl = 'http://localhost:3000';
 const defaultTitle = 'Movies DB Web App';
 const defaultKeywords = ['Movies', 'DB', 'Web', 'App', 'keywords'];
-const defaultDescription = 'Movies DB Web App keywords.';
+const defaultDescription = 'Movies DB Web App description.';
 const defaultLang = 'en';
 const defaultAuthor = 'DreamEcho100';
 const defaultIcon = '/favicon.ico';

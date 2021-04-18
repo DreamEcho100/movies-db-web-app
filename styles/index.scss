@@ -58,8 +58,7 @@
 }
 
 .main-font-size {
-	font-size: var(--normal-size-text-1);
-	font-size: inherit;
+	font-size: inherit !important;
 }
 
 :root {
